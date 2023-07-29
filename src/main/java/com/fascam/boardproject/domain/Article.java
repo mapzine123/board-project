@@ -24,9 +24,9 @@ import java.util.Set;
         @Index(columnList = "createdBy")
 })
 // EntityListeners : 엔티티의 변화를 감지해 엔티티와 매핑된 테이블 데이터를 조작, AuditingListener는 엔티티의 저장, 수정을 감지
-@EntityListeners(AuditingEntityListener.class)
+// @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article extends AuditingFields {
     @Id // PK 설정
     @GeneratedValue(strategy = GenerationType.IDENTITY) // AutoIncrement, mysql은 IDENTITY 방식으로 autoIncrement해서 바꿔줘야함
     private Long id;
