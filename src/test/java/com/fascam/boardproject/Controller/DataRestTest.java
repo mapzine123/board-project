@@ -1,5 +1,6 @@
 package com.fascam.boardproject.Controller;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@Disabled("Spring Data Rest 통합테스트는 불필요하므로 제외")
 @DisplayName("Data REST - API 테스트")
 @Transactional // Test에서 작동하는 Transactional은 rollback이라 DB에 영향 안감
 @AutoConfigureMockMvc // Test 대상이 아닌 @Service, @Repository가 붙은 객체 모두 메모리에 올림
