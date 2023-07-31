@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"> <!-- 이제부터 이 html문서는 평범한 markup lenguage가 아니라 tymeleaf 템플릿임 -->
 <head>
     <meta charset="UTF-8">
     <title>게시판 페이지</title>
 </head>
-<!-- TODO : Semantic Tag 공부할 것-->
+<!-- TODO : Semantic Tag, thymeleaf 공부할 것-->
 <body>
 
-    <header>
-        header 삽입부
-        <hr />
-    </header>
+    <header th:replace="~{header :: header}"></header>
 
     <main>
         <form>
@@ -78,7 +75,7 @@
         </table>
     </main>
 
-    <footer>
+    <footer th:replace="footer :: footer">
         <hr />
         footer 삽입부
     </footer>
