@@ -1,0 +1,73 @@
+package com.fascam.boardproject.Controller;
+
+import com.fascam.boardproject.controller.ArticleController;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@DisplayName("View Controller - Article")
+@WebMvcTest(ArticleController.class) // 모든 컨트롤러에 대한 테스트가 아니라 ArticleController.class 명시 > ArticleController에 대해서만 테스트 실행
+class ArticleControllerTest {
+
+    private final MockMvc mvc;
+
+    public ArticleControllerTest(@Autowired MockMvc mvc) {
+        this.mvc = mvc;
+    }
+
+    @DisplayName("[view] [GET] 게시글 리스트 (게시판) 페이지 - 정상 호출")
+    @Test
+    void givenNothing_whenRequestingArticlesView_thenReturnsArticleView() throws Exception {
+        // Given
+
+        // When & Then
+        mvc.perform(get("/articles"))
+                .andExpect(status().isOk())
+                .andExpect((ResultMatcher) content().contentType(MediaType.TEXT_HTML))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("articles"));
+    }
+
+    @DisplayName("[view] [GET] 게시글 상세 페이지 - 정상 호출")
+    @Test
+    void givenNothing_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
+        // Given
+
+        // When & Then
+        mvc.perform(get("/articles/1"))
+                .andExpect(status().isOk())
+                .andExpect((ResultMatcher) content().contentType(MediaType.TEXT_HTML))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("articles"));
+    }
+
+    @DisplayName("[view] [GET] 게시글 검색 전용 페이지 - 정상 호출")
+    @Test
+    void givenNothing_whenRequestingArticleSearchView_thenReturnsArticleSearchView() throws Exception {
+        // Given
+
+        // When & Then
+        mvc.perform(get("/articles/search"))
+                .andExpect(status().isOk())
+                .andExpect((ResultMatcher) content().contentType(MediaType.TEXT_HTML));
+    }
+
+    @DisplayName("[view] [GET] 게시글 해시태그 검색 페이지 - 정상 호출")
+    @Test
+    void givenNothing_whenRequestingArticleHashtagSearchView_thenReturnsArticleHashtagSearchView() throws Exception {
+        // Given
+
+        // When & Then
+        mvc.perform(get("/articles/search-hashtag"))
+                .andExpect(status().isOk())
+                .andExpect((ResultMatcher) content().contentType(MediaType.TEXT_HTML));
+    }
+}
